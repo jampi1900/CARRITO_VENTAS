@@ -107,7 +107,7 @@ header{
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(220px,auto));
     gap: 1.5rem;
-    margin-right: 10%;
+    margin-right: 100px;
 }
 
 .product-box {
