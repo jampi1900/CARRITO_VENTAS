@@ -24,17 +24,21 @@ body {
 }
 
 .container{
-    max-width:1068px;
-    margin: auto;
     width: 100%;
+    margin: 30px;
+}
+
+main {
+    max-width: 1068px;
+    margin: 0 auto;
 }
 
 header{
     position: fixed;
     top: 0;
     left: 0;
-    background: var(--bg-color);
-    box-shadow: 0 1px 4px hsl( 0 4% 15% / 10%);
+    background-color: var(--text-color);
+    box-shadow: 0 1px 4px hsla(0, 2%, 47%, 0.1);
     z-index: 100;
     width: 100%;
 
@@ -44,7 +48,6 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: var(--text-color);
     color: var(--bg-color);
     padding: 20px 0;
 }
@@ -56,11 +59,13 @@ header{
 }
 
 #card-icon{
+    color: var(--bg-color);
     font-size: 1.8rem;
     cursor: pointer;
 }
 
 .cart{
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -76,7 +81,13 @@ header{
     text-align: center;
     font-size: 1.5rem;
     font-weight: 600;
+    margin-top: 2rem;
 }
+
+.black {
+    color:var(--text-color);
+}
+
 
 
 .section-title {
@@ -88,8 +99,7 @@ header{
 }
 
 .shop {
-    margin-top: 6rem;
-    
+    margin-top: 10rem;
 }
 
 
@@ -139,5 +149,5 @@ header{
 
 
 .add-card:hover{
-
+ background: hsl( 249 32% 17%);
 }
