@@ -1,5 +1,6 @@
 <?php
 include('../../../config/conex.php');
+session_name('session_admin');
 
 $usuario = $_POST['Correo_Empleado'];
 $contrasena = $_POST['Contrasena_Empleado'];

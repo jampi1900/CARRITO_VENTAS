@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Carrito a WhatsApp</title>
+    <script>
+      function enviarWhatsApp() {
+    // Obtener el carrito del localStorage
+    const carrito = JSON.parse(localStorage.getItem('Carrito')) || [];
+    
+    // Crear el mensaje para WhatsApp
+    let mensajeWhatsApp = "🛒 *Productos Seleccionados:*\n\n";
+
+    if (carrito.length > 0) {
+        carrito.forEach(producto => {
+            mensajeWhatsApp += "📦 *Nombre:* " + decodeURIComponent(encodeURIComponent(producto.NOMBRE)) + "\n";
+            mensajeWhatsApp += "🔢 *SKU:* " + decodeURIComponent(encodeURIComponent(producto.SKU)) + "\n";
+            mensajeWhatsApp += "💰 *Precio:* S/. " + decodeURIComponent(encodeURIComponent(producto.PRECIO_OFERTA)) + "\n";
+            mensajeWhatsApp += "📏 *Talla:* " + decodeURIComponent(encodeURIComponent(producto.TALLA)) + "\n";
+            mensajeWhatsApp += "🛍️ *Cantidad:* " + decodeURIComponent(encodeURIComponent(producto.CANTIDAD_PRODUCTO)) + "\n";
+            mensajeWhatsApp += "📊 *Subtotal:* S/. " + decodeURIComponent(encodeURIComponent(producto.SUBTOTAL)) + "\n\n";
+        });
+    } else {
+        mensajeWhatsApp += "No hay productos en el carrito.\n";
+    }
+
+    // Redirigir a WhatsApp
+    const numeroTelefono = '931225581'; // Cambia esto al número de teléfono deseado
+    mensajeWhatsApp = encodeURIComponent(mensajeWhatsApp); // Usar encodeURIComponent
+    const urlWhatsApp = "https://api.whatsapp.com/send?phone=" + numeroTelefono + "&text=" + mensajeWhatsApp;
+
+    window.open(urlWhatsApp, '_blank');
+}
+
+    </script>
+</head>
+<body>
+    <button onclick="enviarWhatsApp()">Enviar Carrito a WhatsApp</button>
+
+</body>
+</html>

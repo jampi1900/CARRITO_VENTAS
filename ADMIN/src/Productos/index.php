@@ -2,7 +2,12 @@
 //Saliendo de la carpeta y entrando a config para la conexcion y agarrado las propiedades
 include('../../config/conex.php');
 include('../../layout/Parte_001/index.php');
+
+
 include('../../layout/Sesion/index.php');
+
+
+
 include('../../app/controladores/Productos/get_datos.php');
 
 ?>

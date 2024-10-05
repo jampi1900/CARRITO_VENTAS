@@ -1,5 +1,7 @@
 <?php
-  session_start();
+   session_name('session_admin');
+   session_start();
+
   if(isset($_SESSION['sesion_email'])){
       // echo "si existe sesion de ".$_SESSION['sesion_email'];
       $email_sesion = $_SESSION['sesion_email'];
@@ -20,6 +22,8 @@
       $DNI_Empleado = $Empleados_S['DNI_Empleado'];
       $FK_Estado = $Empleados_S['FK_Estado'];
       $Rol = $Empleados_S['Nombre_Rol'];
+
+
       
   }else{
       echo "no existe sesion";

@@ -16,10 +16,25 @@
 <link rel="stylesheet" media="screen" href="<?php echo $URL_;?>assets/css/demo/ecommerce/theme.min.css">
 <link rel="stylesheet" media="screen" href="<?php echo $URL_;?>assets/css/demo/ecommerce/simplebar.min.css">
 <link rel="stylesheet" media="screen" href="<?php echo $URL_;?>assets/css/demo/ecommerce/nouislider.min.css">
+
+
+
+<link rel="stylesheet" href="<?php echo $URL;?>assets/plugins/alertify/alertify.min.css">
+
+
+
+
+
+
+
+
+
+
+
 <!-- Page loading styles-->
 
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
 
 <style>
@@ -196,7 +211,7 @@
     <div class="d-flex align-items-center justify-content-between mb-3 pb-1">
       <span class="text-muted mr-2"><!---Estas a s/100 de tener envio gratis!---></span>
       <span class="text-muted mr-2">Subtotal(sin envio):</span>
-      <span class="h5 mb-0">S/.198.65</span>
+      <span id="subtotal_carrito_modal"class="h5 mb-0">S/.198.65</span>
     </div>
 
 
@@ -231,7 +246,7 @@
   <div class="navbar navbar-expand-lg navbar-light bg-light navbar-sticky" data-fixed-element>
     <div class="container px-0 px-xl-3">
       <!--Logo de La Empresa-->
-      <a href="index.html" class="navbar-brand order-lg-1 mr-0 pr-lg-3 mr-lg-4">
+      <a href="../src/index.php" class="navbar-brand order-lg-1 mr-0 pr-lg-3 mr-lg-4">
         <img src="<?php echo $URL_;?>assets/img/ecommerce/logo.svg" alt="Createx Logo" width="130">
       </a>
       <!--Fin del Logo-->
@@ -266,21 +281,6 @@
           </li>
 
 
-          <li class="nav-item dropdown align-self-center mb-0">
-          <a id="userMenu" href="#" class="pr-lg-0 nav-tool"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <!-- Ícono de usuario de Bootstrap Icons, solo el ícono es visible -->
-            <i class="bi bi-person nav-tool-icon"></i>
-          </a>
-
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-            <a class="dropdown-item" href="../src/profile.php">
-              <i class="bi bi-person-circle mr-2"></i> Mi Perfil
-            </a>
-            <a class="dropdown-item" href="../src/Login.php">
-              <i class="bi bi-box-arrow-right mr-2"></i> Cerrar Sesión
-            </a>
-          </div>
-        </li>
 
 
 
@@ -330,14 +330,14 @@
         <!-- Menu -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a href="index.html" class="nav-link active">Inicio</a>
+            <a href="../src/index.php" class="nav-link active">Inicio</a>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tienda</a>
+            <a href="../src/index.php" class="nav-link dropdown-toggle" data-toggle="dropdown">Tienda</a>
             <ul class="dropdown-menu">
-              <li><a href="shop-catalog.html" class="dropdown-item">Catalog with Filters</a></li>
-              <li><a href="shop-single.html" class="dropdown-item">Single Product</a></li>
-              <li><a href="checkout.html" class="dropdown-item">Checkout</a></li>
+              <li><a href="../src/producto.php" class="dropdown-item">Catalog with Filters</a></li>
+              <li><a href="../src/producto.php" class="dropdown-item">Catalog with Filters</a></li>
+              <li><a href="../src/producto.php" class="dropdown-item">Catalog with Filters</a></li>
             </ul>
           </li>
 
@@ -374,6 +374,39 @@
   </div>
 </section>
 <!--Fin Promo bar -->
+
+<style>
+    .float{
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:#25d366;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index:100;
+  }
+
+  .float:hover {
+    text-decoration: none;
+    color: #25d366;
+    background-color:#fff;
+  }
+
+  .my-float{
+    margin-top: 16px;
+  }
+
+</style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone=51931225581&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+
 
 
 

@@ -60,37 +60,47 @@ include('../../app/controladores/Productos/get_datos.php');
                             <th class="border-0 py-2 pl-0">Order No:</th>
                             <td class="border-0 py-2 px-0 text-muted">34BV66580K92</td>
                           </tr>
+
                           <tr>
-                            <th class="border-0 py-2 pl-0">Shiped via:</th>
-                            <td class="border-0 py-2 px-0 text-muted">UPS Ground</td>
+                            <th class="border-0 py-2 pl-0">Cliente:</th>
+                            <td class="border-0 py-2 px-0 text-muted">Yampier Alexander Quispe Quenaya</td>
+                          </tr>
+
+
+                          <tr>
+                            <th class="border-0 py-2 pl-0">Tracking:</th>
+                            <td class="border-0 py-2 px-0 text-muted">12345677899</td>
                           </tr>
                           <tr>
-                            <th class="border-0 py-2 pl-0">Shipped on:</th>
+                            <th class="border-0 py-2 pl-0">Fecha y Hora:</th>
                             <td class="border-0 py-2 px-0 text-muted">August 29, 2020, 6:00pm</td>
                           </tr>
                          
                         </tbody>
                       </table>
                     </div>
+
                     <div class="col-lg-6">
                       <table class="table mb-0">
                         <tbody>
                         
                           <tr>
-                            <th class="border-0 py-2 pl-0">Destination:</th>
-                            <td class="border-0 py-2 px-0 text-muted">London, United Kingdom</td>
+                            <th class="border-0 py-2 pl-0">Destino:</th>
+                            <td class="border-0 py-2 px-0 text-muted">London, United Tacna Peru Asociacion <br> 
+                              los Granados lote <br> 10 maz 10 </td>
                           </tr>
                           <tr>
-                            <th class="border-0 py-2 pl-0">Expected date:</th>
-                            <td class="border-0 py-2 px-0 text-muted">September 4, 2020</td>
+                            <th class="border-0 py-2 pl-0">Metodo de Pago</th>
+                            <td class="border-0 py-2 px-0 text-muted">Tarjeta</td>
                           </tr>
                           <tr>
-                            <th class="border-0 py-2 pl-0">Status:</th>
-                            <td class="border-0 py-2 px-0 text-muted">In Transit</td>
+                            <th class="border-0 py-2 pl-0">Estado:</th>
+                            <td class="border-0 py-2 px-0 text-muted">En Espera</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
+
                   </div>
                   
                 </div>
@@ -105,7 +115,34 @@ include('../../app/controladores/Productos/get_datos.php');
             <div class="row">
               <div class="col-12 mb-4">
                 <div class="card card-body py-3 box-shadow ">
-                <h1>Los botones para los estados  y verificacion</h1>
+                <div class="row">
+                  <div class="col-lg-3 mt-3">
+                  <button type="button" class="btn btn-primary btn-sm">Confirmar Pago</button>
+                  </div>        
+
+                  <div class="col-lg-3 mt-3">
+                  <button type="button" class="btn btn-secondary btn-sm">Confirmar Envio</button>
+                  </div>  <!--MODAL PARA QUE INGRESE EL CODIGO DE SEGUIMIENTO-->
+
+                  <div class="col-lg-3 mt-3">
+                  <button type="button" class="btn btn-success btn-sm">Pedido Finalizado</button>
+                  </div>  
+
+                  <div class="col-lg-3 mt-3">
+                  <button type="button" class="btn btn-danger btn-sm">Eliminar Pedido</button>
+                  </div>  
+
+                 
+                </div>
+<!--
+<button type="button" class="btn btn-primary btn-sm">Primary</button>
+<button type="button" class="btn btn-secondary btn-sm">Secondary</button>
+<button type="button" class="btn btn-success btn-sm">Success</button>
+<button type="button" class="btn btn-danger btn-sm">Danger</button>
+<button type="button" class="btn btn-warning btn-sm">Warning</button>
+<button type="button" class="btn btn-info btn-sm">Info</button>
+<button type="button" class="btn btn-light btn-sm">Light</button>
+<button type="button" class="btn btn-dark btn-sm">Dark</button>-->
                   
                 </div>
               </div>
@@ -154,9 +191,7 @@ include('../../app/controladores/Productos/get_datos.php');
 <td>100</td>
 <td>250</td>
 <td class="text-end">500</td>
-<td>
-<a href="javascript:void(0);" class="delete-set"><img src="assets/img/icons/delete.svg" alt="svg"></a>
-</td>
+
 </tr>
 <tr>
 <td class="productimgname">
@@ -171,9 +206,7 @@ include('../../app/controladores/Productos/get_datos.php');
 <td>0.00</td>
 <td>0.00</td>
 <td class="text-end">1000.00</td>
-<td>
-<a href="javascript:void(0);" class="delete-set"><img src="assets/img/icons/delete.svg" alt="svg"></a>
-</td>
+
 </tr>
 </tbody>
 </table>
@@ -185,20 +218,18 @@ include('../../app/controladores/Productos/get_datos.php');
                                     <div class="col-lg-12 float-md-right">
                                     <div class="total-order">
                                     <ul>
+                              
                                     <li>
-                                    <h4>Order Tax</h4>
-                                    <h5>$ 0.00 (0.00%)</h5>
+                                    <h4>Envio	</h4>
+                                    <h5>S/.15</h5>
                                     </li>
                                     <li>
-                                    <h4>Discount	</h4>
-                                    <h5>$ 0.00</h5>
-                                    </li>
-                                    <li>
-                                    <h4>Shipping</h4>
-                                    <h5>$ 0.00</h5>
+
+                                    <h4>Sub Total</h4>
+                                    <h5>$ 100.00</h5>
                                     </li>
                                     <li class="total">
-                                    <h4>Grand Total</h4>
+                                    <h4>Total</h4>
                                     <h5>$ 0.00</h5>
                                     </li>
                                     </ul>

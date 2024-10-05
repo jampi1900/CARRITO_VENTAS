@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $usuario = "root";
-$contraseña = "1234";
-$base_de_datos = "proyecto_personal";
+$contraseña = "";
+$base_de_datos = "WEB";
 
 // Crear la conexión
 $conexion = new mysqli($host, $usuario, $contraseña, $base_de_datos);

@@ -1,18 +1,11 @@
 <?php
 include('../../ADMIN/config/conex.php');
+#include('../layout/sesion.php');//Siempre antes 
+
 include('../layout/Parte_001.php');
 include('../../ADMIN/app/controladores/Categoria/index.php');
-//include ('../app/controllers/Get_Nuevos_Productos/New_Productos.php');
-
 ?>
 
-<script>
-m();
-
-function m (){
-  console.log('hola mundo');
-}
-</script>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +21,7 @@ function m (){
 <!-- Body-->
 
 <body>
+  
   <!-- Page loading spinner-->
   <div class="cs-page-loading active">
     <div class="cs-page-loading-inner">
@@ -142,6 +136,7 @@ function m (){
 
     <style>
       .cs-image-inner {
+        border-radius: 10px;
         width: 100%;
         height: 400px;
         /* Ajusta la altura según lo necesites */
@@ -149,6 +144,7 @@ function m (){
       }
 
       .cs-image-inner img {
+        border-radius: 10px;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -211,15 +207,18 @@ function m (){
 
 
     <!-- Mobile app CTA -->
-    <section class="bg-dark">
-      <div class="container-fluid p-0">
-        <div class="row no-gutters">
-          <div class="col-12" style="overflow: hidden;">
-            <img src="../assets/img/ecommerce/banner/yape2.jpg" class="d-block w-100 h-100" alt="Illustration" style="object-fit: cover;">
-          </div>
-        </div>
+<!-- Mobile app CTA -->
+<section >
+  <div class="container-fluid p-0">
+    <div class="row no-gutters justify-content-center">
+      <div class="col-10" style="width: 95%; border-radius: 15px; overflow: hidden;">
+        <img src="../assets/img/ecommerce/banner/yape2.jpg" class="d-block w-100 h-100" alt="Illustration" style="object-fit: cover; border-radius: inherit;">
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+<!-- Fin Mobile app CTA -->
+
     <!-- Fin Mobile app CTA -->
 
 
@@ -329,66 +328,17 @@ function m (){
 
 
 
-    <!-- Subscription CTA -->
-    <section class="bg-secondary py-5">
-      <div class="container pt-2 pt-md-3 pb-3">
-        <div class="row align-items-center">
-          <form class="col-md-6 col-xl-4 needs-validation" novalidate>
-            <h2 class="h1 mb-4">Subscribete</h2>
-            <p class="text-muted font-size-lg pb-3 mb-4">Subscribe para recibir promociones exclusivas.</p>
 
-            <div class="form-group pt-4">
-              <label for="s-email">Email</label>
-              <div class="input-group input-group-lg">
-                <input type="email" id="s-email" class="form-control" placeholder="Escribe tu email" required>
-                <div class="input-group-append">
-                  <button type="submit" class="btn btn-primary">Subscribe</button>
-                </div>
-              </div>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" id="s-agree" class="custom-control-input">
-              <label for="s-agree" class="custom-control-label">Confirmo para recibir notificaciones</label>
-            </div>
-          </form>
-
-
-          <div class="col-md-6 col-xl-7 d-none d-md-block">
-            <div class="ml-auto" style="max-width: 459px;">
-              <img src="../assets/img/ecommerce/subscribe-illustration.png" class="d-block" alt="Illustration">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <?php
   include('../layout/Parte_002.php');
+  
   ?>
 
 
 
-<script>
 
-  // Función para obtener y mostrar los datos del carrito desde el localStorage
-function mostrarCarritoEnConsola() {
-    // Verificamos si existe el carrito en el localStorage
-    let carrito = JSON.parse(localStorage.getItem("Carrito"));
-
-    if (carrito && carrito.length > 0) {
-        // Si el carrito no está vacío, lo mostramos en la consola
-        console.log("Productos en el carrito:", carrito);
-    } else {
-        // Si el carrito está vacío o no existe
-        console.log("El carrito está vacío o no existe.");
-    }
-}
-
-// Llamar automáticamente la función
-mostrarCarritoEnConsola();
-
-</script>
 
 
 

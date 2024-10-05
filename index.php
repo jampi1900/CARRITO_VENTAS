@@ -13,7 +13,7 @@ include('ADMIN/config/conex.php');
 <body>
 
 <a href="<?php echo $URL; ?>src/Login/index.php">Admin</a>
-<a href="<?php echo $URL_; ?>src/Login.php">Tienda</a>
+<a href="<?php echo $URL_; ?>src/index.php">Tienda</a>
     
 </body>
 </html>

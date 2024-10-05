@@ -9,11 +9,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <?php
-include('../../ADMIN/config/conex.php');
-include('../layout/Parte_001.php');
-include('../../ADMIN/app/controladores/Categoria/index.php');
-include('../../ADMIN/app/controladores/Productos/get_datos.php');
-?>
+  include('../../ADMIN/config/conex.php');
+
+  
+  include('../layout/Parte_001.php');
+  include('../../ADMIN/app/controladores/Categoria/index.php');
+  include('../../ADMIN/app/controladores/Productos/get_datos.php');
+  ?>
 
 
 
@@ -199,27 +201,27 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
                     <ul class="cs-filter-list list-unstyled pr-3" style="height: 12rem;" data-simplebar data-simplebar-auto-hide="false">
 
-                    <?php
-                        while ($categorias = $DATOS_CATEGORIAS->fetch_assoc()) {
-                          $ID_CATE = $categorias['PK_Categoria'];
-                          $checkbox_id = "category_" . $ID_CATE; // Genera un ID único para cada checkbox
-                        ?>
+                      <?php
+                      while ($categorias = $DATOS_CATEGORIAS->fetch_assoc()) {
+                        $ID_CATE = $categorias['PK_Categoria'];
+                        $checkbox_id = "category_" . $ID_CATE; // Genera un ID único para cada checkbox
+                      ?>
 
-                          <li class="cs-filter-item">
-                            <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="<?php echo $checkbox_id; ?>">
+                        <li class="cs-filter-item">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="<?php echo $checkbox_id; ?>">
 
 
-                              <label for="<?php echo $checkbox_id; ?>" class="custom-control-label">
-                                <span class="cs-filter-item-text"> <?php echo $categorias['Nombre_Categoria']; ?> </span>
-                                <span class="pl-1 text-muted">(18)</span>
-                              </label>
-                            </div>
-                          </li>
+                            <label for="<?php echo $checkbox_id; ?>" class="custom-control-label">
+                              <span class="cs-filter-item-text"> <?php echo $categorias['Nombre_Categoria']; ?> </span>
+                              <span class="pl-1 text-muted">(18)</span>
+                            </label>
+                          </div>
+                        </li>
 
-                        <?php
-                        }
-                        ?>
+                      <?php
+                      }
+                      ?>
 
 
 
@@ -293,8 +295,8 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
 
 
-        
-        
+
+
         <!-- Product grid -->
         <div class="col">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3" data-filters-columns>
@@ -315,18 +317,18 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
               <div class="col pb-sm-2 mb-grid-gutter">
                 <div class="card card-product mx-auto">
                   <div class="card-product-img">
-                    <a href="shop-single.html" class="card-img-top">
+                    <a href="producto_detalle.php?id=<?php echo $ID_PRODUCTO; ?>" class="card-img-top">
                       <img src=" <?php echo $URL . "app/controladores/Productos/img/" . $PRO['PORTADA']; ?> " alt="Product image">
 
                     </a>
 
 
-         
-                      <div class="card-product-widgets-top">
-                        <span class="badge product-badge badge-danger"><?php echo $PRO['Nombre_Etiqueta']; ?></span>
-                      </div>
 
-                   
+                    <div class="card-product-widgets-top">
+                      <span class="badge product-badge badge-danger"><?php echo $PRO['Nombre_Etiqueta']; ?></span>
+                    </div>
+
+
 
 
                     <div class="card-product-widgets-top">
@@ -349,7 +351,7 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
                   <div class="card-body pb-2">
                     <h3 class="card-product-title text-truncate mb-2">
-                      <a href="shop-single.html" class="nav-link"> <?php echo $PRO['Nombre_Producto']; ?> </a>
+                      <a href="producto_detalle.php?id=<?php echo $ID_PRODUCTO; ?>" class="nav-link"> <?php echo $PRO['Nombre_Producto']; ?> </a>
                     </h3>
 
 

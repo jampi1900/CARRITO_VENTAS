@@ -1,3 +1,7 @@
+
+
+
+
 <!--LINK DE DASBOAR-->
 <script src="<?php echo $URL; ?>assets/js/jquery-3.6.0.min.js"></script>
 <script src="<?php echo $URL; ?>assets/js/jquery.slimscroll.min.js"></script>

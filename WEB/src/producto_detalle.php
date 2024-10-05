@@ -7,23 +7,29 @@
   <!-- Viewport-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php
-include('../../ADMIN/config/conex.php');
-include('../layout/Parte_001.php');
-include('../../ADMIN/app/controladores/Categoria/index.php');
-include('../../ADMIN/app/controladores/Productos/get_datos.php');
+  include('../../ADMIN/config/conex.php');
+  #include('../layout/sesion.php'); //Siempre antes 
+
+  include('../layout/Parte_001.php');
+  include('../../ADMIN/app/controladores/Categoria/index.php');
+  include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
 
 
   $id_producto_color = $_GET['id'];
 
-  $SQL_PRODUCTOS_D = "SELECT * FROM productos AS E 
+  $SQL_PRODUCTOS_ID = "SELECT * FROM productos AS E 
   INNER JOIN MARCAS AS B ON E.FK_Marca = B.PK_Marca  
   INNER JOIN CATEGORIAS AS C ON E.FK_Categoria = C.PK_Categoria 
   INNER JOIN ESTADOS AS D ON E.FK_Estado = D.PK_Estado
   INNER JOIN COLORES AS F ON F.PK_Color = E.FK_Color
   INNER JOIN ETIQUETAS AS G ON G.PK_Etiqueta = E.FK_Etiqueta
-  WHERE E.FK_Estado <>  '3' AND E.PK_Producto = '$id_producto_color'"; // ELIMINADO
-  $DETALLES = $conexion->query($SQL_PRODUCTOS_D);
+  WHERE E.FK_Estado <>  '3' AND E.PK_Producto = '$id_producto_color'"; // DIFERENTE A  ELIMINADO
+  $DETALLES = $conexion->query($SQL_PRODUCTOS_ID);
+
+  //TALLAS DISPONIBLES DEL PRODUCTO 
+  $SQL_TALLAS_DETALLE = "SELECT * FROM tallas AS G INNER JOIN det_talla AS F ON F.FK_Talla = G.PK_Talla WHERE F.FK_Producto = '$id_producto_color' AND F.Stock >= 1 ";
+  $TALLAS_DISPONIBLES = $conexion->query($SQL_TALLAS_DETALLE);
 
 
 
@@ -82,12 +88,40 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
 
 
-    <?php
-    while ($D = $DETALLES->fetch_assoc()) {
-      $id_producto_w = $D['PK_Producto'];
-    
 
-    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php
+  
+   while ($D = $DETALLES->fetch_assoc()) {
+       $id_producto_w = $D['PK_Producto'];
+       $nombre_imagen = $D['PORTADA'];
+     
+   ?>
+     <script>
+       // Crear las variables con los valores obtenidos desde PHP
+       const productoID = "<?php echo $id_producto_w; ?>";
+    
+   
+       console.log(productoID); // Muestra el ID del producto en la consola
+
+     </script>
+ 
+
+<div id="imagen_carrito" style="display: none;"><?php echo $nombre_imagen; ?></div>
+
+
+
 
 
       <!-- Page title -->
@@ -110,70 +144,70 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
 
 
-                        <div class="col-md-6 mb-md-0 mb-4">
-                          <!-- Product gallery -->
-                          <div class="cs-carousel cs-gallery cs-product-gallery mx-auto" style="max-width: 600px;">
-                            <div class="cs-carousel-inner" id="product-gallery">
+          <div class="col-md-6 mb-md-0 mb-4">
+            <!-- Product gallery -->
+            <div class="cs-carousel cs-gallery cs-product-gallery mx-auto" style="max-width: 600px;">
+              <div class="cs-carousel-inner" id="product-gallery">
 
-                              <!-- Product gallery item -->
-                              <a class="cs-gallery-item" href="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" data-sub-html='<h6 class="text-light">Gallery image caption #1</h6>'>
-                                <img id="main-image" class="rounded" src="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" alt="Gallery image caption #1">
-                                <span class="cs-gallery-caption">Gallery image caption #1</span>
-                              </a>
+                <!-- Product gallery item -->
+                <a class="cs-gallery-item" href="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" data-sub-html='<h6 class="text-light">Gallery image caption #1</h6>'>
+                  <img  id="main-image" class="rounded" src="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" alt="Gallery image caption #1">
+                  <span class="cs-gallery-caption">Gallery image caption #1</span>
+                </a>
 
-                              <?php
-                              $SQL_IMAGENES = "SELECT * FROM imagenes WHERE FK_Producto = '$id_producto_w'";
-                              $IMAGENES = $conexion->query($SQL_IMAGENES);
-                              $IMAGENES_ = $conexion->query($SQL_IMAGENES);
-                              ?>
+                <?php
+                $SQL_IMAGENES = "SELECT * FROM imagenes WHERE FK_Producto = '$id_producto_w'";
+                $IMAGENES = $conexion->query($SQL_IMAGENES);
+                $IMAGENES_ = $conexion->query($SQL_IMAGENES);
+                ?>
 
-                              <?php
-                              while ($A = $IMAGENES->fetch_assoc()) {
-                              ?>
-                                <!-- Additional product gallery items -->
-                                <a class="cs-gallery-item " href="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" data-sub-html='<h6 class="text-light">Gallery image caption #2</h6>'>
-                                  <img class="rounded" src="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" alt="Gallery image caption #2">
-                                  <span class="cs-gallery-caption">Gallery image caption #2</span>
-                                </a>
-                              <?php
-                              }
-                              ?>
-                            </div>
+                <?php
+                while ($A = $IMAGENES->fetch_assoc()) {
+                ?>
+                  <!-- Additional product gallery items -->
+                  <a class="cs-gallery-item " href="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" data-sub-html='<h6 class="text-light">Gallery image caption #2</h6>'>
+                    <img class="rounded" src="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" alt="Gallery image caption #2">
+                    <span class="cs-gallery-caption">Gallery image caption #2</span>
+                  </a>
+                <?php
+                }
+                ?>
+              </div>
 
-                            <!-- Product gallery thumbnails -->
-                            <div class="cs-thumbnails" id="cs-thumbnails">
-                              <button type="button" data-nav="0" class="thumbnail-button">
-                                <img src="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" alt="Thumbnail 1">
-                              </button>
+              <!-- Product gallery thumbnails -->
+              <div class="cs-thumbnails" id="cs-thumbnails">
+                <button type="button" data-nav="0" class="thumbnail-button">
+                  <img src="<?php echo $URL . "app/controladores/Productos/img/" . $D['PORTADA']; ?>" alt="Thumbnail 1">
+                </button>
 
-                              <?php
-                              $counter = 1;
-                              while ($A = $IMAGENES_->fetch_assoc()) {
-                              ?>
-                                <button type="button" data-nav="<?php echo $counter; ?>" class="thumbnail-button">
-                                  <img src="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" alt="Thumbnail <?php echo $counter + 1; ?>">
-                                </button>
-                              <?php
-                                $counter++;
-                              }
-                              ?>
-                            </div>
-                          </div>
-                        </div>
+                <?php
+                $counter = 1;
+                while ($A = $IMAGENES_->fetch_assoc()) {
+                ?>
+                  <button type="button" data-nav="<?php echo $counter; ?>" class="thumbnail-button">
+                    <img src="<?php echo $URL . "app/controladores/Productos/img/" . $A['Foto_Producto']; ?>" alt="Thumbnail <?php echo $counter + 1; ?>">
+                  </button>
+                <?php
+                  $counter++;
+                }
+                ?>
+              </div>
+            </div>
+          </div>
 
 
-                        <script>
-                          // jQuery or vanilla JavaScript to handle thumbnail click and change the main image
-                          document.querySelectorAll('.thumbnail-button').forEach((button, index) => {
-                            button.addEventListener('click', function() {
-                              // Get the src of the clicked thumbnail image
-                              const newSrc = button.querySelector('img').src;
+          <script>
+            // jQuery or vanilla JavaScript to handle thumbnail click and change the main image
+            document.querySelectorAll('.thumbnail-button').forEach((button, index) => {
+              button.addEventListener('click', function() {
+                // Get the src of the clicked thumbnail image
+                const newSrc = button.querySelector('img').src;
 
-                              // Update the main image src
-                              document.getElementById('main-image').src = newSrc;
-                            });
-                          });
-                        </script>
+                // Update the main image src
+                document.getElementById('main-image').src = newSrc;
+              });
+            });
+          </script>
 
 
 
@@ -198,8 +232,8 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
               <!-- Price -->
               <div class="d-flex align-items-center mb-sm-0 mb-4">
-                <span id = "precio_producto_detalle" class="h3 d-inline-block mb-0 text-danger">S/.<?php echo $D['Precio_Producto']; ?></span>
-                <del id="precio_oferta_producto_detalle" class="d-inline-block ml-2 pl-1 font-size-lg text-muted">S/.<?php echo $D['Precio_Oferta']; ?></del>
+                <span id="precio_producto_detalle" class="h3 d-inline-block mb-0 text-danger">S/.<?php echo $D['Precio_Oferta']; ?></span>
+                <del id="precio_oferta_producto_detalle" class="d-inline-block ml-2 pl-1 font-size-lg text-muted">S/.<?php echo $D['Precio_Producto']; ?></del>
                 <span class="ml-4 p-2 badge badge-danger font-size-base font-weight-bold"><?php echo $D['Nombre_Etiqueta']; ?></span>
               </div>
 
@@ -221,7 +255,7 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
             <!-- Ordering form -->
             <form class="row">
-                
+
               <div class="col-12">
                 <div class="form-group">
                   <div id="id_color" hidden> <?php echo '  ' . $D['FK_Color']; ?></div>
@@ -230,38 +264,55 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
                 </div>
               </div>
 
-<div class="col-sm-8 order-sm-1 order-2">
-    <div class="form-group">
-      <label for="size">Talla</label>
-      <select class="form-control custom-select" id="nombre_de_talla_carrito">
-        <option>Please select</option>
-        <option>L</option>
-        <option>M</option>
-        <option>S</option>
-      </select>
-    </div>
-  </div>
+              
 
-  <div class="col-sm-4 order-sm-2 order-1">
-    <div class="form-group">
-      <label for="number-input">Cantidad</label>
-      <input type="number" class="form-control" id="number-input" min="1" step="1" value="1">
-    </div>
-  </div>
+<!--TALLA-->
+              <div class="col-sm-8 order-sm-1 order-2">
+                <div class="form-group">
+                  <label for="size">Talla</label>
+                  <select class="form-control custom-select" name="FK_Categoria" id="nombre_de_talla_carrito"> class="form-control yselect" required>
+                    <!-- Placeholder de "Seleccione una marca" -->
+                    <option value="" disabled selected>Seleccione una Talla</option>
+                    <?php
+                    foreach ($TALLAS_DISPONIBLES as $TALLAS) { ?>
+                      <option value="<?php echo $TALLAS['PK_Det_Talla']; ?>" data-nombre="<?php echo $TALLAS['Nombre_Talla']; ?>">
+                        <?php echo  $TALLAS['Nombre_Talla']; ?>
+                      </option>
+                    <?php
 
-  <div class="col-sm-8 order-sm-3 order-3">
-    <a id="boton_carrito_detalle_1" class="btn btn-primary" href="producto_detalle.php?id=<?php echo $id_producto_w; ?>">
-      <i class="cxi-cart mr-2"></i>
-      Add Carrito
-    </a>
-  </div>
+                    
+                    }
+                    ?>
+                  </select>
+                </div>
+              </div>
 
-  <div class="col-sm-8 order-sm-4 order-4">
-    <a href="#modal-sizing" data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
-      <i class="cxi-hanger mr-2"></i>
-      Info Talla
-    </a>
-  </div>
+
+
+
+
+
+
+              <div class="col-sm-4 order-sm-2 order-1">
+                <div class="form-group">
+                  <label for="number-input">Cantidad</label>
+                  <input type="number" class="form-control" id="cantidad_carrito" min="1" step="1" value="1">
+                </div>
+              </div>
+
+              <div class="col-sm-8 order-sm-3 order-3">
+                <a id="boton_carrito_detalle_1" class="btn btn-primary" href="producto_detalle.php?id=<?php echo $id_producto_w; ?>">
+                  <i class="cxi-cart mr-2"></i>
+                  Add Carrito
+                </a>
+              </div>
+
+              <div class="col-sm-8 order-sm-4 order-4">
+                <a href="#modal-sizing" data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
+                  <i class="cxi-hanger mr-2"></i>
+                  Info Talla
+                </a>
+              </div>
 
 
 
@@ -275,6 +326,36 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
         }
 
           ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -486,7 +567,7 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
             </div>
 
 
-            
+
 
           </div>
         </section>
@@ -516,14 +597,9 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
             <div class="modal-body px-md-5 px-4">
               <ul class="nav nav-tabs justify-content-center">
                 <li class="nav-item">
-                  <a href="#" class="nav-link active">Women</a>
+                  <a href="#" class="nav-link active">Men</a>
                 </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">Men</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">Kids</a>
-                </li>
+              
               </ul>
               <div class="table-responsive border rounded">
                 <h4 class="mb-0 py-3 font-size-lg text-center">Footwear</h4>
@@ -653,51 +729,89 @@ include('../../ADMIN/app/controladores/Productos/get_datos.php');
 
 
 
-<script>
+  <script>
+    const agregar_carrito_detalle = document.querySelector("#boton_carrito_detalle_1");
+    agregar_carrito_detalle.addEventListener("click", obtener_datos_detalle, false);
 
-  const agregar_carrito_detalle = document.querySelector("#boton_carrito_detalle_1");
-  agregar_carrito_detalle.addEventListener("click", obtener_datos_detalle, false);
+    function obtener_datos_detalle(event) {
+      event.preventDefault(); // Evita el comportamiento por defecto del formulario si lo hay
 
-  function obtener_datos_detalle(event) {
-    event.preventDefault(); // Evita el comportamiento por defecto del formulario si lo hay
+      // Creamos el carrito si no existe
+      if (!localStorage.getItem("Carrito")) {
+        localStorage.setItem("Carrito", JSON.stringify([]));
+      }
 
-    // Creamos el carrito si no existe
-    if (!localStorage.getItem("Carrito")) {
-      localStorage.setItem("Carrito", JSON.stringify([]));
-    }
+      // Obtenemos los datos actuales del carrito
+      let CarritoCompras = JSON.parse(localStorage.getItem("Carrito"));
 
-    // Obtenemos los datos actuales del carrito
-    let CarritoCompras = JSON.parse(localStorage.getItem("Carrito"));
+      // Obtenemos los datos del producto
+      const nombre = document.querySelector("#nombre_producto").textContent.trim();
+      const sku = document.querySelector("#sku_producto").textContent.slice(5).trim();
+      const id_color = document.querySelector("#id_color").textContent.trim();
+      let name_color = document.querySelector("#nombre_color").textContent.slice(9).trim();
+      let precio_oferta = document.querySelector("#precio_producto_detalle").textContent.slice(3).trim();
+      let precio = document.querySelector("#precio_oferta_producto_detalle").textContent.slice(3).trim();
 
-    // Obtenemos los datos del producto
-    const nombre = document.querySelector("#nombre_producto").textContent.trim();
-    const sku = document.querySelector("#sku_producto").textContent.slice(5).trim();
-    const id_color = document.querySelector("#id_color").textContent.trim();
-    let name_color = document.querySelector("#nombre_color").textContent.slice(9).trim();
-    let precio = document.querySelector("#precio_producto_detalle").textContent.slice(3).trim();
-    let precio_oferta = document.querySelector("#precio_oferta_producto_detalle").textContent.slice(3).trim();
-    let nombre_talla = document.querySelector("#nombre_de_talla_carrito").options[document.querySelector("#nombre_de_talla_carrito").selectedIndex].textContent;
+      let id_det_talla = document.querySelector("#nombre_de_talla_carrito").value;
+      
 
-    // Creamos un objeto con los detalles del producto
-    const producto = {
-      NOMBRE: nombre,
-      SKU: sku,
-      COLOR_ID: id_color,
-      COLOR_NOMBRE: name_color,
-      PRECIO_OFERTA: precio_oferta,
-      TALLA: nombre_talla
-    };
+      let nombre_talla = document.querySelector("#nombre_de_talla_carrito").options[document.querySelector("#nombre_de_talla_carrito").selectedIndex].textContent.trim();
+      let cantidad_carrito = document.querySelector("#cantidad_carrito").value;
 
-    // Añadimos el nuevo producto al carrito
-    CarritoCompras.push(producto);
+      let imagen_carrito = document.getElementById('imagen_carrito');
 
-    // Guardamos el carrito actualizado en el localStorage
-    localStorage.setItem("Carrito", JSON.stringify(CarritoCompras));
-    mostrarCarrito();
-  }
+          // Obtenemos los datos del producto desde PHP
+      const Producto_ID = "<?php echo $id_producto_w; ?>";  // ID del producto desde PHP
+    
+    
+
+      console.log("PK Detalle Talla:", id_det_talla );
+
+
+
+       console.log(imagen_carrito);
+
+       let sub_total= cantidad_carrito * precio_oferta; 
+
+
+
+      // Creamos un objeto con los detalles del producto
+      const producto = {
+        ID: Producto_ID,  
+        PK_DET_TALLA : id_det_talla,
+        NOMBRE: nombre,
+        SKU: sku,
+        COLOR_ID: id_color,
+        COLOR_NOMBRE: name_color,
+        PRECIO_OFERTA: precio_oferta,
+        PRECIO: precio,
+        ID: Producto_ID,
+        TALLA: nombre_talla,
+        CANTIDAD_PRODUCTO: cantidad_carrito,
+        IMAGEN: imagen_carrito.textContent,
+        SUBTOTAL: sub_total
+      };
+
+      // Añadimos el nuevo producto al carrito
+      CarritoCompras.push(producto);
+
+      // Guardamos el carrito actualizado en el localStorage
+      localStorage.setItem("Carrito", JSON.stringify(CarritoCompras));
+
+
+          // Mostramos el mensaje de éxito usando AlertifyJS
+          alertify.set('notifier', 'position', 'top-center');
+    alertify.error('Producto añadido correctamente al carrito', 5); // Mensaje rojo
+
+
+      mostrarCarrito();
 
   
-</script>
+
+
+      
+    }
+  </script>
 
 
 

@@ -1,158 +1,201 @@
-<div class="page-wrapper">
-<div class="content">
-<div class="page-header">
-<div class="page-title">
-<h4>Quotation Add</h4>
-<h6>Add/Update Quotation</h6>
-</div>
-</div>
-<div class="card">
-<div class="card-body">
-<div class="row">
-<div class="col-lg-3 col-sm-6 col-12">
-<div class="form-group">
-<label>Customer Name</label>
-<div class="row">
-<div class="col-lg-10 col-sm-10 col-10">
-<select class="select">
-<option>Select Customer</option>
-<option>Customer</option>
-</select>
-</div>
-<div class="col-lg-2 col-sm-2 col-2 ps-0">
-<div class="add-icon">
-<a href="javascript:void(0);"><img src="assets/img/icons/plus1.svg" alt="img"></a>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="col-lg-3 col-sm-6 col-12">
-<div class="form-group">
-<label>Quotation Date </label>
-<div class="input-groupicon">
-<input type="text" placeholder="DD-MM-YYYY" class="datetimepicker">
-<div class="addonset">
-<img src="assets/img/icons/calendars.svg" alt="img">
-</div>
-</div>
-</div>
-</div>
-<div class="col-lg-6 col-sm-6 col-12">
-<div class="form-group">
-<label>Reference No.</label>
-<input type="text">
-</div>
-</div>
-<div class="col-lg-12 col-sm-6 col-12">
-<div class="form-group">
-<label>Product Name</label>
-<div class="input-groupicon">
-<input type="text" placeholder="Scan/Search Product by code and select...">
-<div class="addonset">
-<img src="assets/img/icons/scanners.svg" alt="img">
-</div>
-</div>
-</div>
-</div>
-</div>
+<?php
+//Saliendo de la carpeta y entrando a config para la conexcion y agarrado las propiedades
+include('../../config/conex.php');
+include('../../layout/Parte_001/index.php');
+include('../../layout/Sesion/index.php');
+include('../../app/controladores/Productos/get_datos.php');
+
+?>
+
+
+<body>
+    <div id="global-loader">
+        <div class="whirly-loader"></div>
+    </div>
+ 
+
+
+        <div class="main-wrapper">
+        <?php include('../../layout/Navegador/index.php'); ?>
 
 
 
-<div class="row">
-<div class="table-responsive">
-<table class="table">
-<thead>
-<tr>
-<th>Product</th>
-<th>Net Unit Price($)	</th>
-<th>Stock</th>
-<th>Qty</th>
-<th>Discount($)	</th>
-<th>Tax %	</th>
-<th class="text-end">Subtotal ($)</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="productimgname">
-<a class="product-img">
-<img src="assets/img/product/product7.jpg" alt="product">
-</a>
-<a href="javascript:void(0);">Apple Earpods</a>
-</td>
-<td>150</td>
-<td>500</td>
-<td>500</td>
-<td>100</td>
-<td>250</td>
-<td class="text-end">500</td>
-<td>
-<a href="javascript:void(0);" class="delete-set"><img src="assets/img/icons/delete.svg" alt="svg"></a>
-</td>
-</tr>
-<tr>
-<td class="productimgname">
-<a class="product-img">
-<img src="assets/img/product/product6.jpg" alt="product">
-</a>
-<a href="javascript:void(0);">Macbook Pro</a>
-</td>
-<td>15.00</td>
-<td>6000.00</td>
-<td>100.00</td>
-<td>0.00</td>
-<td>0.00</td>
-<td class="text-end">1000.00</td>
-<td>
-<a href="javascript:void(0);" class="delete-set"><img src="assets/img/icons/delete.svg" alt="svg"></a>
-</td>
-</tr>
-</tbody>
-</table>
+        
+        <div class="page-wrapper">
+
+
+            <div class="content">
+                <div class="page-header">
+                    <div class="page-title">
+                        <h4>Lista de Pedidos</h4>
+                        <h6>Mostrando todos los Pedidos</h6>
+                    </div>
+                 
+                </div>
+
+                
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-top">
+                            <div class="search-set">
+
+                                <div class="search-input">
+                                    <a class="btn btn-searchset"><img src="<?php echo $URL;?>assets/img/icons/search-white.svg" alt="img" /></a>
+                                </div>
+                            </div>
+
+                        </div>
 
 
 
 
 
+                        <div class="table-responsive">
+                            <table class="table datanew">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre Producto</th><th>SKU</th><th>Marca</th><th>Color</th><th>Precio</th><th>Precio Oferta</th><th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
 
-</div>
-</div>
+
+
+                                    <?php
+                                    $contador = 0;
+                                    while ($M = $DATOS_PRODUCTOS->fetch_assoc()) {
+                                        $id_producto = $M['PK_Producto'];
+                                    ?>
+                                        <tr>
+
+                                            <td class="productimgname">
+
+                                            <div>
+                                                <a href="<?php echo $URL . "/app/Controladores/Productos/img/" . $M['PORTADA']; ?>" class="product-img glightbox" data-gallery="gallery1">
+                                                    <img class="img-fluid" src="<?php echo $URL . "/app/Controladores/Productos/img/" . $M['PORTADA']; ?>" alt="product" />
+                                                </a>
+                                            </div>
+
+ 
+
+
+                                                <div>
+                                                    <div>
+                                                        <p><?php echo $M['Nombre_Producto']; ?></p>
+                                                    </div>
+
+                                                    <style>
+                                                        /* Agrega esto a tu hoja de estilos CSS */
+
+                                                        .small-btn {
+                                                            font-size: 12px;
+                                                            /* Ajusta el tamaño de la fuente para hacer el botón más pequeño */
+                                                            padding: 1px 3px;
+                                                            /* Ajusta el relleno del botón según tus preferencias */
+                                                        }
+                                                    </style>
+
+                                                    <div
+                                                        class="col-2 col-sm-4 col-md-2 col-xl mb-3 mb-l-0">
+                                                        <p><?php if ($M['PK_Estado'] == '1') {
+                                                            ?>
+
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-warning  btn-sm active small-btn">
+                                                                    No Publicado
+                                                                </button>
+
+                                                            <?php
+
+                                                            } else {
+                                                            ?>
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn btn-outline-success btn-sm active small-btn">
+                                                                    Publicado
+                                                                </button>
+                                                            <?php
+
+                                                            }; ?>
+                                                        </p>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td><?php echo $M['SKU']; ?></td>
+                                            <td><?php echo $M['Nombre_Marca']; ?></td>
+                                            <td><?php echo $M['Nombre_Color']; ?></td>
+                                            <td><?php echo $M['Precio_Producto']; ?></td>
+                                            <td><?php echo $M['Precio_Oferta']; ?></td>
+
+                                            <td>
+
+
+
+
+
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-primary btn-sm">Acciones</button>
+                                                    <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="sr-only">Toggle Dropdown</span>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a href="inventario.php?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Inventario</a>
+                                                        <a href="variedad.php?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Variedades</a>
+                                                        <a href="editar_producto?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Editar</a>
+                                                        <a href="borrar_producto?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Borrar</a>
+                                                        <a href="publicar.php?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Publicar</a>
+                                                        <a href="ver_producto?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Ver</a>
+                                                        <a href="ver_producto?id=<?php echo $id_producto; ?>" type="button" class="dropdown-item">Ocultar Producto</a>
+
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </td>
+                                        </tr>
+
+
+
+                                    <?php
+                                    }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
 
 
 
 
 
 
+        <?php include('../../layout/Parte_002/index.php') ?>
+        <?php include('../../layout/Mensaje/index.php') ?>
+
+</body>
+
+</html>
 
 
-<div class="row ">
-<div class="col-lg-12 float-md-right">
-<div class="total-order">
-<ul>
-<li>
-<h4>Order Tax</h4>
-<h5>$ 0.00 (0.00%)</h5>
-</li>
-<li>
-<h4>Discount	</h4>
-<h5>$ 0.00</h5>
-</li>
-<li>
-<h4>Shipping</h4>
-<h5>$ 0.00</h5>
-</li>
-<li class="total">
-<h4>Grand Total</h4>
-<h5>$ 0.00</h5>
-</li>
-</ul>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
+<div id="respuesta"></div>

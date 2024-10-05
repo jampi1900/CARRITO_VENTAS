@@ -1,19 +1,23 @@
 <?php
-if ((isset($_SESSION['mensaje'])) && (isset($_SESSION['icono']))) {
+
+
+if (isset($_SESSION['mensaje']) && isset($_SESSION['icono'])) {
     $respuesta = $_SESSION['mensaje'];
     $icono = $_SESSION['icono'];
-?>
-    <script>
+    // Código para mostrar la alerta
+    echo "<script>
         Swal.fire({
             position: 'top-end',
-            icon: '<?php echo $icono; ?>',
-            title: '<?php echo $respuesta; ?>',
+            icon: '$icono',
+            title: '$respuesta',
             showConfirmButton: false,
             timer: 2500
-        })
-    </script>
-<?php
+        });
+    </script>";
+
+    // Limpiar las variables de sesión
     unset($_SESSION['mensaje']);
     unset($_SESSION['icono']);
 }
+
 ?>

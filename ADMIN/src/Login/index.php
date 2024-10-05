@@ -4,7 +4,10 @@
 ?>
 
 <body class="account-page">
+
+
 <?php
+   session_name('session_admin');
     session_start();
     if(isset($_SESSION['mensaje'])){
         $respuesta = $_SESSION['mensaje']; ?>
@@ -20,7 +23,21 @@
     <?php
     }
     ?>
-    <div class="main-wrapper">
+
+
+                <style>
+                  
+
+                    .bordes {
+                        border-radius: 15px;
+                        
+                    }
+                    
+                </style>
+
+  <br>
+  <br>
+    <div class="main-wrapper bordes_1 ">
         <div class="account-content">
             <div class="login-wrapper">
                 <div class="login-content">
@@ -54,8 +71,9 @@
                         </form>
                     </div>
                 </div>
-                <div class="login-img">
-                    <img src="<?php echo $URL;?>public/img/logo/Fondo.jpg" alt="img">
+              
+                <div class="login-img ">
+                    <img class="bordes" src="<?php echo $URL;?>public/login_d.jpg" alt="img">
                 </div>
             </div>
         </div>
